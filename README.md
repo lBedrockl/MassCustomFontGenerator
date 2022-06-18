@@ -13,5 +13,4 @@ please watch the video
 ill add a text tut sometime
 
 
-This code is based off of colon's mc2gd code and modified to make imgs
-imma just use colon's license
+This code is based off of colon's mc2gd code
