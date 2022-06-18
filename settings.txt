@@ -1,0 +1,25 @@
+
+MC2GD SETTINGS
+
+* Every line in this file that doesn't start with a ">" will be ignored by the code
+* Note that HOME is the same as C:/Users/YourName
+
+==============================================
+
+GD SAVE FILE LOCATION:
+The file where your GD levels are saved (CCLocalLevels.dat)
+
+> HOME/AppData/Local/GeometryDash/CCLocalLevels.dat
+
+==============================================
+
+What text gets printed
+
+> HOME/Documents/GitHub/mcfg/text.txt
+
+Font Used
+
+you need to edit mcfg.js fontdata const at the top to change fonts.
+
+if you want to add a custom font you need to copy a .json file and edit it
+also you need the data on the custom font which is annyoing to get

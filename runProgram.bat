@@ -1,0 +1,2 @@
+node mcfg.js
+pause
