@@ -1,7 +1,7 @@
 const fs = require('fs')
 const zlib = require('zlib')
 const leveldata = require('./leveldata.json')
-const fontdata = require('./godEaterFont.json') //replace with font you wanna use
+const fontdata = require('./FontFiles/godEater.json') //replace with font you wanna use
 const settings = fs.readFileSync('./settings.txt', 'utf8').split("\n").filter(x => x.startsWith(">")).map(x => x.slice(2))
 
 let [gdLevels, inputText] = settings
@@ -271,7 +271,7 @@ fs.readFile(inputText, 'utf8', function(err, data) {
     //import to gd \/
 
     fs.readFile(gdLevels, 'utf8', function(err, saveData) {
-		//return
+		return
         if (err) return console.log("Error! Could not open or find GD save file: " + gdLevels + "\nMaybe double check that you entered the correct file path into settings.txt?\n")
 
         if (!saveData.startsWith('<?xml version="1.0"?>')) {
