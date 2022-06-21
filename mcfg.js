@@ -54,10 +54,16 @@ function xor(str, key) {
     for (i = 0; i < str.length; i++) res += String.fromCodePoint(str[i] ^ key);
     return res;
 }
-//todo caps oh hell this is annoying + 26 more ;-;  68 cur > 94 total
+
 function letterPick(letter){
     let temp = fontdata.nothing
-	switch(letter.toLowerCase()){
+    let letterTemp
+    if(fontdata.ac != ""){ //check to see if font data has caps, idk if works yet
+		letterTemp = letter
+    }else letterTemp = letter.toLowerCase()
+
+	
+	switch(letterTemp){
 		case " ": if(fontdata.space != "") {return fontdata.space} else return temp
 		case "a": if(fontdata.a != "") {return fontdata.a} else return temp
 		case "b": if(fontdata.b != "") {return fontdata.b} else return temp
@@ -85,6 +91,32 @@ function letterPick(letter){
 		case "x": if(fontdata.x != "") {return fontdata.x} else return temp
 		case "y": if(fontdata.y != "") {return fontdata.y} else return temp
 		case "z": if(fontdata.z != "") {return fontdata.z} else return temp
+        case "A": if(fontdata.ac != "") {return fontdata.ac} else return temp
+        case "B": if(fontdata.bc != "") {return fontdata.bc} else return temp
+        case "C": if(fontdata.cc != "") {return fontdata.cc} else return temp
+        case "D": if(fontdata.dc != "") {return fontdata.dc} else return temp
+        case "E": if(fontdata.ec != "") {return fontdata.ec} else return temp
+        case "F": if(fontdata.fc != "") {return fontdata.fc} else return temp
+        case "G": if(fontdata.gc != "") {return fontdata.gc} else return temp
+        case "H": if(fontdata.hc != "") {return fontdata.hc} else return temp
+        case "I": if(fontdata.ic != "") {return fontdata.ic} else return temp
+        case "J": if(fontdata.jc != "") {return fontdata.jc} else return temp
+        case "K": if(fontdata.kc != "") {return fontdata.kc} else return temp
+        case "L": if(fontdata.lc != "") {return fontdata.lc} else return temp
+        case "M": if(fontdata.mc != "") {return fontdata.mc} else return temp
+        case "N": if(fontdata.nc != "") {return fontdata.nc} else return temp
+        case "O": if(fontdata.oc != "") {return fontdata.oc} else return temp
+        case "P": if(fontdata.pc != "") {return fontdata.pc} else return temp
+        case "Q": if(fontdata.qc != "") {return fontdata.qc} else return temp
+        case "R": if(fontdata.rc != "") {return fontdata.rc} else return temp
+        case "S": if(fontdata.sc != "") {return fontdata.sc} else return temp
+        case "T": if(fontdata.tc != "") {return fontdata.tc} else return temp
+        case "U": if(fontdata.uc != "") {return fontdata.uc} else return temp
+        case "V": if(fontdata.vc != "") {return fontdata.vc} else return temp
+        case "W": if(fontdata.wc != "") {return fontdata.wc} else return temp
+        case "X": if(fontdata.xc != "") {return fontdata.xc} else return temp
+        case "Y": if(fontdata.yc != "") {return fontdata.yc} else return temp
+        case "Z": if(fontdata.zc != "") {return fontdata.zc} else return temp
 		case "0": if(fontdata[0] != "") {return fontdata[0]} else return temp
 		case "1": if(fontdata[1] != "") {return fontdata[1]} else return temp
 		case "2": if(fontdata[2] != "") {return fontdata[2]} else return temp
@@ -271,7 +303,7 @@ fs.readFile(inputText, 'utf8', function(err, data) {
     //import to gd \/
 
     fs.readFile(gdLevels, 'utf8', function(err, saveData) {
-		return
+		//return
         if (err) return console.log("Error! Could not open or find GD save file: " + gdLevels + "\nMaybe double check that you entered the correct file path into settings.txt?\n")
 
         if (!saveData.startsWith('<?xml version="1.0"?>')) {
