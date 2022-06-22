@@ -64,7 +64,7 @@ function letterPick(letter){
 
 	
 	switch(letterTemp){
-		case " ": if(fontdata.space != "") {return fontdata.space} else return temp
+		case " ": return fontdata.space
 		case "a": if(fontdata.a != "") {return fontdata.a} else return temp
 		case "b": if(fontdata.b != "") {return fontdata.b} else return temp
 		case "c": if(fontdata.c != "") {return fontdata.c} else return temp
@@ -159,6 +159,7 @@ function letterPick(letter){
 		case ">": if(fontdata['>'] != "") {return fontdata['>']} else return temp
 		case "/": if(fontdata['/'] != "") {return fontdata['/']} else return temp
 		case "?": if(fontdata['?'] != "") {return fontdata['?']} else return temp
+        case "\n": return fontdata.space
 		default: return temp
 	}
 }
