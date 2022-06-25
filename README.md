@@ -1,13 +1,12 @@
-https://youtu.be/V7W9Ic_94GA If you need my help here is a video
-
 Get node (https://nodejs.org/en/download/)
 
 Put yout text in text.txt
 
 use runProgram.bat to run
 
-if you want to add a new font or change to another one
-please watch the video
+
+Here is a tutorial on how to use and add a new font
+https://youtu.be/EcqCHgDJJTg
 
 
 ill add a text tut sometime

@@ -1,52 +1,17 @@
 const fs = require('fs')
 const zlib = require('zlib')
 const leveldata = require('./leveldata.json')
-const fontdata = require('./FontFiles/godEater.json') //replace with font you wanna use
 const settings = fs.readFileSync('./settings.txt', 'utf8').split("\n").filter(x => x.startsWith(">")).map(x => x.slice(2))
 
-let [gdLevels, inputText] = settings
+let [gdLevels, inputText, jsonName] = settings
 gdLevels = gdLevels.replace("HOME", process.env.HOME || process.env.USERPROFILE).replace(/\\/g,"/").replace("\r", "")
 inputText = inputText.replace("HOME", process.env.HOME || process.env.USERPROFILE).replace(/\\/g,"/").replace("\r", "")
 
-
+const fontdata = require(`./FontFiles/${jsonName}.json`)
 
 console.log()   // Blank line for neatness
 
 let missing = []
-
-function rgb2hsv (val) {
-    var computedH = 0;
-    var computedS = 0;
-    var computedV = 0;
-    let [r, g, b] = val.split(",")
-   
-    if ( r==null || g==null || b==null ||
-        isNaN(r) || isNaN(g)|| isNaN(b) ) {
-      alert ('Please enter numeric RGB values!');
-      return;
-    }
-    if (r<0 || g<0 || b<0 || r>255 || g>255 || b>255) {
-      alert ('RGB values must be in the range 0 to 255.');
-      return;
-    }
-    r=r/255; g=g/255; b=b/255;
-    var minRGB = Math.min(r,Math.min(g,b));
-    var maxRGB = Math.max(r,Math.max(g,b));
-   
-    // Black-gray-white
-    if (minRGB==maxRGB) {
-     computedV = minRGB;
-     return [0,0,computedV];
-    }
-   
-    // Colors other than black-gray-white:
-    var d = (r==minRGB) ? g-b : ((b==minRGB) ? r-g : b-r);
-    var h = (r==minRGB) ? 3 : ((b==minRGB) ? 1 : 5);
-    computedH = 60*(h - d/(maxRGB - minRGB));
-    computedS = (maxRGB - minRGB)/maxRGB;
-    computedV = maxRGB;
-    return `${computedH}a${computedS}a${computedV}a1a1`
-}
 
 function xor(str, key) {
     str = String(str).split('').map(letter => letter.charCodeAt());
@@ -62,7 +27,6 @@ function letterPick(letter){
 		letterTemp = letter
     }else letterTemp = letter.toLowerCase()
 
-	
 	switch(letterTemp){
 		case " ": return fontdata.space
 		case "a": if(fontdata.a != "") {return fontdata.a} else return temp
@@ -211,7 +175,7 @@ function objectDatatoLevelData(objectData,linkNum){
 	if (y.xPos) pos[0] += (y.xPos)           // X Offset 
 	if (y.yPos) pos[1] += (y.yPos)           // Y Offset
 	if (y.objid) { 
-		levelStr += `1,${y.objid},2,${pos[0]},3,${pos[1]},96,1` // 96 is glow
+		levelStr += `1,${y.objid},2,${pos[0]},3,${pos[1]}`
 		if(fontdata.link) levelStr += `,108,${linkNum + 1}` // links objects to a value
 		if(y.groups) levelStr += `,57,${y.groups}`
 		levelStr += `,64,1,67,1` //dont fade dont enter
