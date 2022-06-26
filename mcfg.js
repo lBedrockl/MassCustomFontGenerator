@@ -26,7 +26,6 @@ function letterPick(letter){
     if(fontdata.ac != ""){ //check to see if font data has caps, idk if works yet
 		letterTemp = letter
     }else letterTemp = letter.toLowerCase()
-
 	switch(letterTemp){
 		case " ": return fontdata.space
 		case "a": if(fontdata.a != "") {return fontdata.a} else return temp
@@ -201,41 +200,13 @@ function objectDatatoLevelData(objectData,linkNum){
 	return levelStr
 }
 
-function addDatatoObject(object,xoffset){ //add when needed
-	if(object.objid != null)
-		object.objid = object.objid
+function addDatatoObject(object,xoffset){//to do add smaller and big spacing for certain letters
+	if(object.xPos != null){
+        /*if(currentLetterSpacing == 0) {*/object.xPos = object.xPos + (xoffset * fontdata.spacing)//}
+        //if(currentLetterSpacing == 1) {object.xPos = object.xPos + (xoffset * fontdata.spacingSmall)}
+        //if(currentLetterSpacing == 2) {object.xPos = object.xPos + (xoffset * fontdata.spacingBig)}
+    }
 
-	if(object.xPos != null)
-		object.xPos = object.xPos + (xoffset * fontdata.spacing) //30 per block
-
-	if(object.yPos != null)
-		object.yPos = object.yPos
-
-	if(object.r != null)
-		object.r = object.r
-
-	if(object.zLayer != null)
-		object.zLayer = object.zLayer
-
-	if(object.scale != null)
-		object.scale = object.scale
-
-	if(object.groups != null)
-		object.groups = `${object.groups}` // to add a group do (.groupid) > `${object.groups}.108` is adding group 108
-	
-	//colors
-	if(object.c1 != null)
-		object.c1 = object.c1       // change to a number to change color id 1
-
-	if(object.cid1 != null)         //black color only to use rgb2hsv("r,g,b")
-		object.cid1 = object.cid1   // change to a rgb2hsv("r,g,b") to change color id 1 hue
-
-	if(object.c2 != null)
-		object.c2 = object.c2       // change to a number to change color id 2
-
-	if(object.cid2 != null)         //black color only to use rgb2hsv("r,g,b")
-		object.cid2 = object.cid2   // change to rgb2hsv("r,g,b") to change color id 2 hue
-	
 	return object
 }
 
@@ -253,11 +224,11 @@ fs.readFile(inputText, 'utf8', function(err, data) {
 			list = letterPick(data[offsetNum + noLetterData]).split(";").forEach(x => {
 				let object = levelDatatoObjectData(x)
 				object = addDatatoObject(object,offsetNum)
-				levelStr += objectDatatoLevelData(object,offsetNum)
-				if (object.objid != 440)
-				{
-					objects += 1
-				}
+                let tempStr = objectDatatoLevelData(object,offsetNum)
+                if(tempStr != "" && object.objid != 440){
+                    levelStr += tempStr
+                    objects ++
+                }
 			})
 			offsetNum += 1
 		} else noLetterData += 1

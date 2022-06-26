@@ -2,6 +2,8 @@
     "nothing": "",
     "space": "1,440,2,0,3,0;",
     "spacing": 20, "< 30 per block ": "",
+    "spacingSmall": 15,
+    "spacingBig": 25,
     "link": true, "< link letters together": "",
     "a": "",
     "b": "",
